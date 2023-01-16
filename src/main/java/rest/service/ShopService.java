@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ShopService {
     private final String REST_URI
-            = "http://localhost:8080/CRUDWithRestAndJSP/api/vehicles";
+            = "https://localhost:18443/VehicleService/api/vehicles";
 
     Client client = ClientBuilder.newClient();
 
@@ -24,7 +24,7 @@ public class ShopService {
     }
 
     public List<VehicleDto> getVehiclesWithType (String type) {
-        WebTarget webTarget = client.target("http://localhost:8080/CRUDWithRestAndJSP/api/vehicles?type=" + type);
+        WebTarget webTarget = client.target("https://localhost:18443/VehicleService/api/vehicles?type=" + type);
         Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
         List<VehicleDto> dtos = invocationBuilder.get(new GenericType<List<VehicleDto>>(){});
         return dtos;

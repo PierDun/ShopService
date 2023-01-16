@@ -8,18 +8,6 @@
     <%@ include file="/css/filter_style.css" %>
 </style>
 <body>
-<caption><h2>Filter</h2></caption>
-<form method="get" class="filter-form paginatorForm" name="numberOfRecordsPerPageForm">
-    <p> Items per page </p>
-    <select id="numberOfRecordsPerPage" class="form-select" name="numberOfRecordsPerPage" onchange="changePagesQuantity(${vehiclesLength})">
-        <option value="5">5</option>
-        <option selected value="10">10</option>
-        <option value="25">25</option>
-    </select>
-    <p> Selected Page </p>
-    <div class="selectedPage"></div>
-    <select id="selectedPage" name="selectedPage">
-    </select>
 </form>
 <ul class="nav nav-tabs filter-tabs" data-tabs="tabs" id="filter-tab">
     <li class="nav-item active">
@@ -40,6 +28,10 @@
                 <option value="CHOPPER">CHOPPER</option>
             </select>
 
+            <div class="mx-auto" style="color: red">
+                <h7  id = "error1"></h7>
+            </div>
+
             <input type="button" class="btn btn-primary mx-auto mt-3" value="find" onclick="filter()"/>
         </form>
     </div>
@@ -53,6 +45,10 @@
             <p>Wheels to Add:</p>
             <div class="filter-form__range">
                 <input type="text" id="wheels" class="form-control Age"/>
+            </div>
+
+            <div class="mx-auto" style="color: red">
+                <h7  id = "error2"></h7>
             </div>
 
             <input type="button" class="btn btn-primary mx-auto mt-3" value="add" onclick="add()"/>

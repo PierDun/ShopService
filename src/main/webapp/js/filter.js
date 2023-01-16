@@ -1,29 +1,29 @@
 async function filter () {
-    let getStr = "api/shop/search/by-type/" + $("#type").val();
+    let getStr = "/ShopService/api/shop/search/by-type/" + $("#type").val();
 
     let response = await fetch(getStr);
     if (response.ok) {
         let json = await response.json();
         fillTableWithArray(json);
+    } else {
+        let error = await response.text();
+        $('.mx-auto__text').remove();
+        $('#error1').text(error);
     }
 }
 
 async function add () {
     const id = $("#id").val();
     const wheels = $("#wheels").val();
-    let response = await fetch(`/VehicleService/api/shop/add-wheels/${id}/${wheels}`, {method: 'POST'});
-}
-
-function changePagesQuantity(vehiclesQuantity) {
-    const numberOfRecordsPerPage = document.getElementById("numberOfRecordsPerPage").value;
-    const pagesQuality = Math.ceil(vehiclesQuantity / numberOfRecordsPerPage);
-    $('#selectedPage').remove();
-    let html = "<select id='selectedPage' name='selectedPage'>";
-    for (let i = 1; i < pagesQuality+1; i++) {
-        html += '<option value='+ i + '>'+ i + '</option>'
+    let response = await fetch(`/ShopService/api/shop/add-wheels/${id}/${wheels}`, {method: 'POST'});
+    if (response.ok) {
+        let json = await response.json();
+        fillTableWithSingle(json);
+    } else {
+        let error = await response.text();
+        $('.mx-auto__text').remove();
+        $('#error2').text(error);
     }
-    html += "</select>"
-    $('.selectedPage').append(html);
 }
 
 function fillTableWithArray(json) {
